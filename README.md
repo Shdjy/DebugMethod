@@ -9,6 +9,7 @@
 	
 2.排查问题->生成Dump文件
 （1）Dll程序入口添加
+```csharp
 // dllmain.cpp : 定义 DLL 应用程序的入口点。
 #include "pch.h"
 #include <windows.h>
@@ -68,10 +69,14 @@ BOOL APIENTRY DllMain(HMODULE hModule,
 		break;
 	}
 	return TRUE;
-}
+}```
 
 （2）当dll中出现异常中断时会在程序目录生成.dmp 文件，用vs打开该文件。
 （3）VS 会提示选择 调试类型：
 	对于 .NET 程序 → 选择 混合模式调试 (.NET + 本机)。
 	对于 C++ DLL → 选择 本机代码。
+	
+3.远程调试
+	目标机上安装msvsmon.exe管理员运行，工具->无身份验证+允许任何用户进行调试。启动待调试程序。
+	调试机上管理员启动vs，打开项目：调试->调试->附加到进程->连接类型：远程Windows,连接目标：目标IP：端口（4026）；选择进程。
 
