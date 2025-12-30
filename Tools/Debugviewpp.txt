@@ -1,0 +1,22 @@
+直接通过vs运行程序无法捕获。
+class Program
+{
+    static void Main()
+    {
+        Debug.WriteLine("[error]Hello DebugView++ from C#!");
+        Debug.WriteLine("Debug 输出: 只在 Debug 模式下有效");
+        System.Diagnostics.Trace.WriteLine("Trace 输出: Release 模式下也能看到");
+
+        // 可以添加自定义 TraceListener，比如写入文件
+        Trace.Listeners.Add(new TextWriterTraceListener("log.txt"));
+        Trace.WriteLine("这条会被写入到 log.txt 文件");
+    }
+}
+
+#include <windows.h>
+
+int main()
+{
+    OutputDebugStringA("这是调试信息: 程序启动成功\n");
+    return 0;
+}
