@@ -1,7 +1,18 @@
 @echo off  
-chcp 65001 >nul
-echo 正在关闭Dump...  
+
+set "dir=C:\CrashDump"
+
+if exist "%dir%" (
+
+    rd /s /q "%dir%"
+
+    echo delete all files 
+) else (
+    echo no %dir%
+)
+
+
 reg delete "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\Windows Error Reporting\LocalDumps" /f  
-echo Dump已经关闭  
+echo Dump Stop 
 pause  
 @echo on 
